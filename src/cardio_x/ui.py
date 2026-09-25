@@ -6,8 +6,9 @@ import joblib
 import streamlit as st
 import tensorflow as tf
 
-MODEL_PATH = Path("models/best_1d_cnn_model.keras")
-SCALER_PATH = Path("models/scaler.joblib")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+MODEL_PATH = PROJECT_ROOT / "models" / "best_1d_cnn_model.keras"
+SCALER_PATH = PROJECT_ROOT / "models" / "scaler.joblib"
 
 
 def apply_theme() -> None:

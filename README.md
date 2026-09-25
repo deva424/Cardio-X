@@ -48,9 +48,15 @@ py -m streamlit run app.py
 
 Open the local URL shown in the terminal, usually `http://localhost:8501`.
 
+## Deploy on Streamlit Community Cloud
+
+Push this repository to GitHub, then create a Streamlit app using `app.py` as the entry point. Keep the trained model at `models/best_1d_cnn_model.keras` and include `pages/`, `src/`, and `requirements.txt`; the pages import shared code from `src/cardio_x`, so those files are part of the app. Training data, notebooks, and reports are not needed for deployment.
+
+The current model file is about 4.4 MB, so it can be committed directly with the project. The app can optionally use `models/scaler.joblib`; if it is absent, the app fits a scaler to each uploaded batch.
+
 ## Dataset format
 
-For model training and evaluation, place these headerless MIT-BIH files in `data/raw/`:
+For model training and evaluation, install the additional research dependencies with `py -m pip install -r requirements-training.txt`, then place these headerless MIT-BIH files in `data/raw/`:
 
 ```text
 data/raw/
@@ -100,24 +106,26 @@ reports/confusion_matrix.png
 
 ```text
 ARR_detection/
-├── app.py                         # Creative upload landing page
+├── app.py                         # Streamlit landing page
 ├── pages/
 │   ├── 1_Analyze_ECG.py           # Results dashboard and waveform explorer
 │   └── 2_Model_Guide.py           # Model classes and interpretation guide
 ├── src/cardio_x/
 │   ├── constants.py               # Class names and guidance text
-│   ├── model.py                   # 1D CNN architecture
+│   ├── model.py                    # 1D CNN architecture for training
 │   ├── preprocessing.py           # Dataset and inference preprocessing
-│   ├── train.py                   # Training entry point
-│   ├── evaluate.py                # Evaluation entry point
-│   └── ui.py                      # Shared UI theme and artifact loading
+│   ├── train.py                   # Optional training entry point
+│   ├── evaluate.py                # Optional evaluation entry point
+│   └── ui.py                      # Shared UI theme and model loading
 ├── models/
-│   └── best_1d_cnn_model.keras    # Supplied trained model
-├── notebooks/
-│   └── app_py.ipynb               # Original Colab reference notebook
+│   └── best_1d_cnn_model.keras    # Trained model required by the app
 ├── requirements.txt
+├── requirements-training.txt      # Extra packages for training and evaluation
 └── README.md
 ```
+
+For deployment, the essential files are `app.py`, `pages/`, `src/cardio_x/`, `models/best_1d_cnn_model.keras`, and `requirements.txt`.
+Training data, notebook material, and generated reports are not included in this deployment focused copy. Create `data/raw/` and `reports/` if you later want to run training or evaluation.
 
 ## Heartbeat classes
 

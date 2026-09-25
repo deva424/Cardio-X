@@ -15,7 +15,7 @@ st.markdown("""<style>
 </style>""", unsafe_allow_html=True)
 
 if not MODEL_PATH.exists():
-    st.error("The model file is missing. Expected: models/best_1d_cnn_model.keras")
+    st.error(f"The model file is missing. Expected: {MODEL_PATH}")
     st.stop()
 
 st.markdown("""<section class="landing-hero"><div class="orb"></div><svg class="landing-art" viewBox="0 0 850 240" aria-hidden="true"><path class="pulse-shadow" d="M5 130 H150 L190 128 L220 70 L252 192 L292 35 L337 151 L370 130 H520 L552 112 L580 147 L610 130 H845"/><path class="pulse-path" d="M5 130 H150 L190 128 L220 70 L252 192 L292 35 L337 151 L370 130 H520 L552 112 L580 147 L610 130 H845"/></svg><div class="landing-copy"><div class="eyebrow" style="color:#8ff0d9">CARDIO-X / ECG INTELLIGENCE</div><h1>Every heartbeat<br>tells a story.</h1><p>Enter the analysis studio to transform raw ECG samples into clear, visual heartbeat insights.</p><div class="pill">AI-ASSISTED REVIEW &nbsp; / &nbsp; 5 RHYTHM CLASSES</div><div class="upload-panel"><p>Upload your ECG CSV to begin. Your results will open in a dedicated analysis page.</p>""", unsafe_allow_html=True)

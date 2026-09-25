@@ -6,7 +6,7 @@ import streamlit as st
 
 from src.cardio_x.constants import CLASS_INFO
 from src.cardio_x.preprocessing import extract_uploaded_signals, prepare_uploaded_features
-from src.cardio_x.ui import apply_theme, load_artifacts, metric_card
+from src.cardio_x.ui import MODEL_PATH, apply_theme, load_artifacts, metric_card
 
 st.set_page_config(page_title="Analyze ECG | Cardio-X", page_icon="+", layout="wide")
 apply_theme()
@@ -14,7 +14,7 @@ st.markdown('<div class="eyebrow">Cardio-X / Analysis workspace</div><h1>Analyze
 
 model, scaler = load_artifacts()
 if model is None:
-    st.error("The model file is missing. Expected: models/best_1d_cnn_model.keras")
+    st.error(f"The model file is missing. Expected: {MODEL_PATH}")
     st.stop()
 
 stored_upload = st.session_state.get("ecg_upload")
